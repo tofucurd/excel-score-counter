@@ -11,12 +11,15 @@ print('choose one excel file')
 ID=input()
 
 app=xw.App(visible=True,add_book=False)
-app.display_alerts=False
-app.screen_updating=False
+# app.display_alerts=False
+# app.screen_updating=False
 
 bk=app.books.open(ID)
 sht=bk.sheets[0]
 plt.rcParams["font.family"]=["STHeiti"]
+
+def sort(x):
+    x.range('a3').expand('table').api.sort(key1=sht.range('b3').api,order1=2)
 
 def work():
     r=sht.range('a1').expand('down').count
@@ -67,7 +70,7 @@ def work():
 
     bk.save()
 
-    sht.range('a3').expand('table').api.sort(key1=sht.range('b3').api,order1=2)
+    sort(sht)
 
     bk.save()
 
@@ -81,9 +84,9 @@ def graph():
     r=sht.range('a1').expand('down').count
     c=sht.range('a3').expand('right').count
 
-    sht.range('a3').expand('table').api.sort(key1=sht.range('b3').api,order1=2)
+    sort(sht)
 
-    fig=plt.figure(num=1,figsize=(4*r,18))
+    fig=plt.figure(num=1,figsize=((c-2)/3,(r-2)*2),dpi=200)
 
     if sht.pictures.count>0:
         sht.pictures[0].delete()
@@ -99,15 +102,14 @@ def graph():
             if fo.find('/AVERAGE')!=-1:
                 cnt+=1
                 data.append(sht[i,j].value)
-        ax=fig.add_subplot(8,4,i-1)
+        ax=fig.add_subplot(r-2,1,i-1)
         ax.set_title(name)
         ax.tick_params(labelbottom=False)
         ax.tick_params('both',direction='in')
         ax.set_ylim([0,300])
         ax.plot(np.arange(0,cnt),data,"c-d")
         ax.plot(np.arange(0,cnt),np.linspace(100,100,cnt))
-    if r-2==8:sht.pictures.add(fig,name="picture",update=True,left=sht.range((r+3,1)).left,top=sht.range((r+3,1)).top,width=3000,height=4500//r)
-    else:sht.pictures.add(fig,name="picture",update=True,left=sht.range((r+3,1)).left,top=sht.range((r+3,1)).top,width=1000,height=1000//r)
+    sht.pictures.add(fig,name="picture",update=True,left=sht.range((r+3,1)).left,top=sht.range((r+3,1)).top,width=(c-2)/3*75,height=(r-2)*127.5)
     bk.save()
 
 while True:
@@ -119,5 +121,5 @@ while True:
     res=input()
     if res=='n':break
     
-bk.close()
-app.quit()
+# bk.close()
+# app.quit()
