@@ -33,14 +33,3 @@ for i in range(2,r+2):
 bk.save()
 bk.close()
 app.quit()
-"""
-吴秋实
-徐哲晨
-刘晟林
-纪卓然
-康旻舟
-张仡乐
-蒲韦坤
-夏知齐
-
-"""
