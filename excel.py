@@ -6,13 +6,14 @@ import numpy as np
 def addr(s,a,b,c=2):
     return s[a,b].address.replace('$','',c)
 
-for i in os.listdir('./'):print(i)
+for i in os.listdir('./'):
+    if i.find('.xlsx')!=-1:print(i)
 print('choose one excel file')
 ID=input()
 
 app=xw.App(visible=True,add_book=False)
-# app.display_alerts=False
-# app.screen_updating=False
+app.display_alerts=False
+app.screen_updating=False
 
 bk=app.books.open(ID)
 sht=bk.sheets[0]
@@ -121,5 +122,5 @@ while True:
     res=input()
     if res=='n':break
     
-# bk.close()
-# app.quit()
+bk.close()
+app.quit()
