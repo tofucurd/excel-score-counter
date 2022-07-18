@@ -2,6 +2,6 @@
 
 环境要求：``xlwings`` ``matplotlib`` ``numpy``
 
-使用``init.py``初始化
+使用``init.py``新建成绩单
 
-使用``excel.py``添加成绩
+使用``excel.py``向一个已有的成绩单添加成绩
