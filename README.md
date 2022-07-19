@@ -1,16 +1,26 @@
 # 使用python实现的excel成绩统计器
 
-环境要求：``xlwings`` ``matplotlib`` ``numpy``
+## 环境要求
+
+- python3
+
+- Excel
+
+- python第三方库：``xlwings`` ``matplotlib`` ``numpy``
 
 ## Important
 
 python程序运行时均会打开excel软件，属于正常现象，请不要对打开的excel做任何操作，只需要在程序中操作即可，程序执行完后均会关闭正在运行的excel。
 
-## 新建
+## 使用
+
+使用命令``python3 -u <name>.py``运行，注意把要操作的成绩单与成绩放在同一个目录下
+
+### 新建
 
 使用``init.py``新建成绩单
 
-## 添加
+### 添加
 
 使用``excel.py``向一个已有的成绩单添加成绩（注：必须为``init.py``创建）
 
@@ -37,6 +47,6 @@ python程序运行时均会打开excel软件，属于正常现象，请不要对
 注意：倘若成绩有误，只需手动将错误的成绩改过来，再运行``excel.py``并选择``just update graph``即可更新折线。
 
 
-## 比较
+### 比较
 
-使用``comp.py``对两个**成员相同**的成绩单做成绩波动比较，并输出到``result.xlsx``中
+使用``comp.py``对两个**成员相同**的成绩单的总成绩一栏做成绩波动比较，并输出到``result.xlsx``中，常用于两个阶段的比较
