@@ -28,13 +28,16 @@ sht[0,0].value=['姓名',ID1.replace('.xlsx', ''),ID2.replace('.xlsx', ''),'差'
 s=sht2[2,0].expand('down').value
 cnt=sht2[2,0].expand('down').count
 
+idx=0
 for i in range(cnt):
-    s1=0
+    s1=-1
     for j in range(cnt):
         if sht1[j+2,0].value==s[i]:
             s1=sht1[j+2,1].value
+    if s1==-1:continue
+    idx=idx+1
     s2=sht2[i+2,1].value
-    sht[i+1,0].value=[s[i],s1,s2,s2-s1]
+    sht[idx,0].value=[s[i],s1,s2,s2-s1]
 
 sht.range('a2').expand('table').api.sort(key1=sht.range('d2').api,order1=2)
 
